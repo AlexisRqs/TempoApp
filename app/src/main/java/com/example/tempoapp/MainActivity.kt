@@ -14,12 +14,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.tempoapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    val LOGTAG = MainActivity::class.simpleName
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val edfapi = ApiClient.instance.create(EdfApi::class.java)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
