@@ -57,4 +57,7 @@ dependencies {
 
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.8'
+
+    // HTTP logger
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11'
 }
