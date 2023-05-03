@@ -20,4 +20,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTint="#FFFFFF"
+        android:fontFamily="@font/raleway"
+        android:text="Bonjour !"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nous sommes le {date}"
+        tools:layout_editor_absoluteX="21dp"
+        tools:layout_editor_absoluteY="53dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
