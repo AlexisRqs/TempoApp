@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+<<<<<<< HEAD
+compiler.xml
+gradle.xml
+misc.xml
+vcs.xml
+=======
+>>>>>>> origin/dev

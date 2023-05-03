@@ -1,4 +1,4 @@
-package com.example.tempoapp.ui.home
+package com.example.tempoapp.ui.Home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
