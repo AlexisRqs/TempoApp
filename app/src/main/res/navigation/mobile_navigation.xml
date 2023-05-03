@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.tempoapp.ui.Previsions.PrevisionsFragment"
+        android:name="com.example.tempoapp.ui.History.HistoryFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_previsions" />
+        tools:layout="@layout/fragment_history" />
 
     <fragment
         android:id="@+id/nav_slideshow"

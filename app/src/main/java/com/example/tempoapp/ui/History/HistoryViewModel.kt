@@ -1,10 +1,10 @@
-package com.example.tempoapp.ui.Previsions
+package com.example.tempoapp.ui.History
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class PrevisionsViewModel : ViewModel() {
+class HistoryViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is gallery Fragment"
