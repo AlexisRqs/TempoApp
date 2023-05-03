@@ -1,4 +1,4 @@
-package com.example.tempoapp.ui.Accueil
+package com.example.tempoapp.ui.Home
 
 import android.os.Bundle
 import android.view.LayoutInflater
