@@ -13,7 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tempoapp.databinding.ActivityMainBinding
-import com.example.tempoapp.model.ColorTempo
+import com.example.tempoapp.model.ColorTempoResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,13 +31,29 @@ class MainActivity : AppCompatActivity() {
         val edfapi = ApiClient.instance.create(IEdfApi::class.java)
 
 
+        val EDF_TEMPO_API_ALERT_TYPE = ""
+        val call = edfapi.getColorTempo(EDF_TEMPO_API_ALERT_TYPE,String())
+        call.enqueue(object : Callback<ColorTempoResponse> {
+            override fun onResponse(
+                call: Call<ColorTempoResponse>,
+                response: Response<ColorTempoResponse>
+            ) {
+                Log.d(LOGTAG, response.body().toString())
+            }
+
+            override fun onFailure(call: Call<ColorTempoResponse>, t: Throwable) {
+                Log.e(LOGTAG,"Call to getColorTempo failed")
+            }
+        } )
+
+
 
 
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.appBarMain.toolbar)
+       /* setSupportActionBar(binding.appBarMain.toolbar)
 
         binding.appBarMain.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -54,22 +70,9 @@ class MainActivity : AppCompatActivity() {
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        navView.setupWithNavController(navController) */
 
 
-        val call = edfapi.getColorTempo()
-        call.enqueue(object : Callback<ColorTempo> {
-            override fun onResponse(
-                call: Call<ColorTempo>,
-                response: Response<ColorTempo>
-            ) {
-                Log.d(LOGTAG, response.body().toString())
-            }
-
-            override fun onFailure(call: Call<ColorTempo>, t: Throwable) {
-                Log.e(LOGTAG,"Call to getColorTempo failed")
-            }
-        } )
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
