@@ -8,10 +8,14 @@ import java.util.concurrent.TimeUnit
 
 class ApiClient {
     companion object {
-        const val EDFAPI_BASE_URL = "https://particulier.edf.fr/services/rest/referentiel/"
+
+        private val LOG_TAG = ApiClient::class.java.simpleName
+        private const val EDFAPI_BASE_URL = "https://particulier.edf.fr"
 
         // keep singleton instance
         val instance = Build()
+
+
 
         private fun Build(): Retrofit {
 

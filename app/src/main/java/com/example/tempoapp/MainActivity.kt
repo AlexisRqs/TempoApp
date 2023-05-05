@@ -1,6 +1,7 @@
 package com.example.tempoapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -12,6 +13,11 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tempoapp.databinding.ActivityMainBinding
+import com.example.tempoapp.model.ColorTempo
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.net.HttpURLConnection
 
 class MainActivity : AppCompatActivity() {
     val LOGTAG = MainActivity::class.simpleName
@@ -22,7 +28,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val edfapi = ApiClient.instance.create(EdfApi::class.java)
+        val edfapi = ApiClient.instance.create(IEdfApi::class.java)
+
+
+
 
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -46,6 +55,21 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+        val call = edfapi.getColorTempo()
+        call.enqueue(object : Callback<ColorTempo> {
+            override fun onResponse(
+                call: Call<ColorTempo>,
+                response: Response<ColorTempo>
+            ) {
+                Log.d(LOGTAG, response.body().toString())
+            }
+
+            override fun onFailure(call: Call<ColorTempo>, t: Throwable) {
+                Log.e(LOGTAG,"Call to getColorTempo failed")
+            }
+        } )
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -57,5 +81,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+
     }
 }
+
