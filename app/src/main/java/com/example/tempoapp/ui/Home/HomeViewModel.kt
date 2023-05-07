@@ -48,10 +48,40 @@ class HomeViewModel : ViewModel() {
     }
 
     fun fetchRemainingTempo() {
-        // Implement the API call to getRemainingTempo using a similar pattern as fetchTempoColor
+        isLoading.value = true
+        edfApi.getRemainingTempo(IEdfApi.EDF_TEMPO_API_ALERT_TYPE).enqueue(object : Callback<RemainingTempoResponse> {
+            override fun onResponse(call: Call<RemainingTempoResponse>, response: Response<RemainingTempoResponse>) {
+                if (response.isSuccessful) {
+                    remainingTempo.value = response.body()
+                } else {
+                    error.value = "Error fetching remaining tempo"
+                }
+                isLoading.value = false
+            }
+
+            override fun onFailure(call: Call<RemainingTempoResponse>, t: Throwable) {
+                error.value = "Error fetching remaining tempo: ${t.localizedMessage}"
+                isLoading.value = false
+            }
+        })
     }
 
     fun fetchHistoricTempo(dateBegin: String, dateEnd: String) {
-        // Implement the API call to getHistoricTempo using a similar pattern as fetchTempoColor
+        isLoading.value = true
+        edfApi.getHistoricTempo(dateBegin, dateEnd).enqueue(object : Callback<HistoricTempoResponse> {
+            override fun onResponse(call: Call<HistoricTempoResponse>, response: Response<HistoricTempoResponse>) {
+                if (response.isSuccessful) {
+                    historicTempo.value = response.body()
+                } else {
+                    error.value = "Error fetching historic tempo"
+                }
+                isLoading.value = false
+            }
+
+            override fun onFailure(call: Call<HistoricTempoResponse>, t: Throwable) {
+                error.value = "Error fetching historic tempo: ${t.localizedMessage}"
+                isLoading.value = false
+            }
+        })
     }
 }
