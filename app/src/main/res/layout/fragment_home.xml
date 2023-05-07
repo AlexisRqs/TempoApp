@@ -65,7 +65,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView_tempo_today"
+            android:id="@+id/textViewTempoToday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway"
@@ -75,7 +75,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView_tempo_tomorrow"
+            android:id="@+id/textViewTempoTomorrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway"
@@ -84,15 +84,6 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textViewTempoRemaining"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/raleway"
-            android:text="Nombre de jours restants pour chaque couleur :"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewRemainingTempo"
@@ -101,7 +92,7 @@
             android:text="Remaining Tempo"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewTempoRemaining" />
+            app:layout_constraintTop_toBottomOf="@id/textViewTempoTomorrow" />
 
         <TextView
             android:id="@+id/textViewHistoricTempo"

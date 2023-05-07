@@ -18,8 +18,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val LOGTAG = HomeFragment::class.simpleName
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     private lateinit var homeViewModel: HomeViewModel
@@ -91,10 +90,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun updateColorTempoUI(colorTempoResponse: ColorTempoResponse) {
-        binding.textView2.text = "Today's Tempo: ${colorTempoResponse.todayColor}"
-        binding.textView3.text = "Tomorrow's Tempo: ${colorTempoResponse.tomorrowColor}"
-        binding.textViewTempoRemaining.text = "Remaining days: Blue: ${colorTempoResponse.remainingBlue}, White: ${colorTempoResponse.remainingWhite}, Red: ${colorTempoResponse.remainingRed}"
-
+        binding.textViewTempoToday.text = "Today's Tempo: ${colorTempoResponse.todayColor}"
+        binding.textViewTempoTomorrow.text = "Tomorrow's Tempo: ${colorTempoResponse.tomorrowColor}"
     }
 
     private fun updateRemainingTempoUI(remainingTempoResponse: RemainingTempoResponse) {
@@ -102,13 +99,11 @@ class HomeFragment : Fragment() {
         binding.textViewRemainingTempo.text = remainingTempoText
     }
 
-
     private fun updateHistoricTempoUI(historicTempoResponseList: List<HistoricTempoResponse>) {
         // Update the UI with the historic tempo data, you can format the data as needed.
         val historicTempoText = historicTempoResponseList.joinToString(separator = "\n") { "${it.date}: ${it.couleur}" }
         binding.textViewHistoricTempo.text = historicTempoText
     }
-
 
 
     override fun onDestroyView() {
