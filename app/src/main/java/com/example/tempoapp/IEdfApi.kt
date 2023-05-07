@@ -29,7 +29,7 @@ interface IEdfApi {
     // https://particulier.edf.fr/services/rest/referentiel/historicTEMPOStore?dateBegin=2020&dateEnd=2021
     @GET("services/rest/referentiel/historicTEMPOStore")
     fun getHistoricTempo(
-        @Query("dateBegin") dateBegin : String,
-        @Query("dateEnd") dateEnd : String
-    ): Call<HistoricTempoResponse>
+        @Query("dateBegin") dateBegin: String,
+        @Query("dateEnd") dateEnd: String
+    ): Call<List<HistoricTempoResponse>>
 }

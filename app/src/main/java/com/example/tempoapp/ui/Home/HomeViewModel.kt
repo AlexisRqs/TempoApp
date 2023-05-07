@@ -23,7 +23,7 @@ class HomeViewModel : ViewModel() {
 
     val tempoColor = MutableLiveData<ColorTempoResponse?>()
     val remainingTempo = MutableLiveData<RemainingTempoResponse?>()
-    val historicTempo = MutableLiveData<HistoricTempoResponse?>()
+    val historicTempo = MutableLiveData<List<HistoricTempoResponse>?>()
 
     val error = MutableLiveData<String?>()
     val isLoading = MutableLiveData<Boolean>()
@@ -68,8 +68,8 @@ class HomeViewModel : ViewModel() {
 
     fun fetchHistoricTempo(dateBegin: String, dateEnd: String) {
         isLoading.value = true
-        edfApi.getHistoricTempo(dateBegin, dateEnd).enqueue(object : Callback<HistoricTempoResponse> {
-            override fun onResponse(call: Call<HistoricTempoResponse>, response: Response<HistoricTempoResponse>) {
+        edfApi.getHistoricTempo(dateBegin, dateEnd).enqueue(object : Callback<List<HistoricTempoResponse>> {
+            override fun onResponse(call: Call<List<HistoricTempoResponse>>, response: Response<List<HistoricTempoResponse>>) {
                 if (response.isSuccessful) {
                     historicTempo.value = response.body()
                 } else {
@@ -78,7 +78,7 @@ class HomeViewModel : ViewModel() {
                 isLoading.value = false
             }
 
-            override fun onFailure(call: Call<HistoricTempoResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<HistoricTempoResponse>>, t: Throwable) {
                 error.value = "Error fetching historic tempo: ${t.localizedMessage}"
                 isLoading.value = false
             }
