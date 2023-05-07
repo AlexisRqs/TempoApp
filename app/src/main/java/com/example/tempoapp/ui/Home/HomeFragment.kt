@@ -74,7 +74,7 @@ class HomeFragment : Fragment() {
 
     private fun fetchColorTempo() {
         // Use the current date for the date parameter
-        val currentDate = java.text.SimpleDateFormat("yyyy-MM-dd").format(java.util.Date())
+        val currentDate = java.text.SimpleDateFormat("dd-MM-yyyy").format(java.util.Date())
         homeViewModel.fetchTempoColor(currentDate)
     }
 
@@ -90,12 +90,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun updateColorTempoUI(colorTempoResponse: ColorTempoResponse) {
-        binding.textViewTempoToday.text = "Today's Tempo: ${colorTempoResponse.todayColor}"
-        binding.textViewTempoTomorrow.text = "Tomorrow's Tempo: ${colorTempoResponse.tomorrowColor}"
+        binding.textViewTempoToday.text = "Tempo du jour : ${colorTempoResponse.todayColor}"
+        binding.textViewTempoTomorrow.text = "Tempo de demain : ${colorTempoResponse.tomorrowColor}"
     }
 
     private fun updateRemainingTempoUI(remainingTempoResponse: RemainingTempoResponse) {
-        val remainingTempoText = "Remaining Tempo: Blue: ${remainingTempoResponse.PARAMNBJBLEU}, White: ${remainingTempoResponse.PARAMNBJBLANC}, Red: ${remainingTempoResponse.PARAMNBJROUGE}"
+        val remainingTempoText = "Tempo restants : Bleu : ${remainingTempoResponse.PARAMNBJBLEU} jours, Blanc : ${remainingTempoResponse.PARAMNBJBLANC} jours, Rouge : ${remainingTempoResponse.PARAMNBJROUGE} jours"
         binding.textViewRemainingTempo.text = remainingTempoText
     }
 
