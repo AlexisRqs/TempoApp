@@ -8,8 +8,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface IEdfApi {
-    val EDF_TEMPO_API_ALERT_TYPE: String
-        get() = "TEMPO"
+    companion object {
+        const val EDF_TEMPO_API_ALERT_TYPE = "TEMPO"
+    }
 
 
     // https://particulier.edf.fr/services/rest/referentiel/searchTempoStore?dateRelevant=2022-12-05&TypeAlerte=TEMPO

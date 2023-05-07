@@ -8,13 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.tempoapp.ApiClient
-import com.example.tempoapp.IEdfApi
 import com.example.tempoapp.databinding.FragmentHomeBinding
 import com.example.tempoapp.model.ColorTempoResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
@@ -25,13 +20,14 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var homeViewModel: HomeViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -45,28 +41,30 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Observe LiveData objects from ViewModel
+        homeViewModel.tempoColor.observe(viewLifecycleOwner) { colorTempoResponse ->
+            colorTempoResponse?.let { updateUI(it) }
+        }
+
+        homeViewModel.error.observe(viewLifecycleOwner) { errorMessage ->
+            errorMessage?.let {
+                Log.e(LOGTAG, it)
+                // Show an error message to the user
+            }
+        }
+
+        homeViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            // Update UI to show or hide a loading indicator based on the value of isLoading
+        }
+
         fetchColorTempo()
     }
 
     private fun fetchColorTempo() {
-        val edfapi = ApiClient.instance.create(IEdfApi::class.java)
-        val EDF_TEMPO_API_ALERT_TYPE = ""
-        val call = edfapi.getColorTempo(EDF_TEMPO_API_ALERT_TYPE, String())
-
-        call.enqueue(object : Callback<ColorTempoResponse> {
-            override fun onResponse(
-                call: Call<ColorTempoResponse>,
-                response: Response<ColorTempoResponse>
-            ) {
-                Log.d(LOGTAG, response.body().toString())
-                response.body()?.let { updateUI(it) }
-            }
-
-            override fun onFailure(call: Call<ColorTempoResponse>, t: Throwable) {
-                Log.e(LOGTAG, "Call to getColorTempo failed")
-                // Handle the error and show a message to the user
-            }
-        })
+        // Use the current date for the date parameter
+        val currentDate = java.text.SimpleDateFormat("yyyy-MM-dd").format(java.util.Date())
+        homeViewModel.fetchTempoColor(currentDate)
     }
 
     private fun updateUI(colorTempoResponse: ColorTempoResponse) {
