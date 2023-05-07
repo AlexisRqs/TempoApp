@@ -74,7 +74,7 @@ class HomeFragment : Fragment() {
 
     private fun fetchColorTempo() {
         // Use the current date for the date parameter
-        val currentDate = java.text.SimpleDateFormat("dd-MM-yyyy").format(java.util.Date())
+        val currentDate = java.text.SimpleDateFormat("yyyy-MM-dd").format(java.util.Date())
         homeViewModel.fetchTempoColor(currentDate)
     }
 
