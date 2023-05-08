@@ -2,7 +2,10 @@ package com.example.tempoapp.model
 
 import com.google.gson.annotations.SerializedName
 
-class HistoricTempoResponse {
-    @SerializedName("date"    ) var date    : String? = null
-    @SerializedName("couleur" ) var couleur : String? = null
-}
+data class HistoricTempoResponse(
+    @SerializedName("date")
+    val date: String? = null,
+
+    @SerializedName("couleur")
+    val couleur: String? = null
+)

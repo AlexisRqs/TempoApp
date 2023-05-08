@@ -10,9 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.tempoapp.databinding.FragmentHomeBinding
 import com.example.tempoapp.model.ColorTempoResponse
-import com.example.tempoapp.model.HistoricTempoResponse
 import com.example.tempoapp.model.RemainingTempoResponse
-
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -52,10 +50,6 @@ class HomeFragment : Fragment() {
             remainingTempoResponse?.let { updateRemainingTempoUI(it) }
         }
 
-        homeViewModel.historicTempo.observe(viewLifecycleOwner) { historicTempoResponse ->
-            historicTempoResponse?.let { updateHistoricTempoUI(it) }
-        }
-
         homeViewModel.error.observe(viewLifecycleOwner) { errorMessage ->
             errorMessage?.let {
                 Log.e(LOGTAG, it)
@@ -69,7 +63,6 @@ class HomeFragment : Fragment() {
 
         fetchColorTempo()
         fetchRemainingTempo()
-        fetchHistoricTempo()
     }
 
     private fun fetchColorTempo() {
@@ -82,12 +75,6 @@ class HomeFragment : Fragment() {
         homeViewModel.fetchRemainingTempo()
     }
 
-    private fun fetchHistoricTempo() {
-        // Define the date range you want to fetch the historic data for
-        val dateBegin = "2023-01-01"
-        val dateEnd = "2023-12-31"
-        homeViewModel.fetchHistoricTempo(dateBegin, dateEnd)
-    }
 
     private fun updateColorTempoUI(colorTempoResponse: ColorTempoResponse) {
         binding.textViewTempoToday.text = "Tempo du jour : ${colorTempoResponse.todayColor}"
@@ -98,13 +85,6 @@ class HomeFragment : Fragment() {
         val remainingTempoText = "${remainingTempoResponse.PARAMNBJBLEU} jours bleu(s), ${remainingTempoResponse.PARAMNBJBLANC} jours blanc(s), ${remainingTempoResponse.PARAMNBJROUGE} jours rouge(s)"
         binding.textViewRemainingTempo.text = remainingTempoText
     }
-
-    private fun updateHistoricTempoUI(historicTempoResponseList: List<HistoricTempoResponse>) {
-        // Update the UI with the historic tempo data, you can format the data as needed.
-        val historicTempoText = historicTempoResponseList.joinToString(separator = "\n") { "${it.date}: ${it.couleur}" }
-        binding.textViewHistoricTempo.text = historicTempoText
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

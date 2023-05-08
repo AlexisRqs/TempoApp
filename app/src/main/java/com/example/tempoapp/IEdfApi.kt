@@ -1,7 +1,7 @@
 package com.example.tempoapp
 
 import com.example.tempoapp.model.ColorTempoResponse
-import com.example.tempoapp.model.HistoricTempoResponse
+import com.example.tempoapp.model.DatesResponse
 import com.example.tempoapp.model.RemainingTempoResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -31,5 +31,5 @@ interface IEdfApi {
     fun getHistoricTempo(
         @Query("dateBegin") dateBegin: String,
         @Query("dateEnd") dateEnd: String
-    ): Call<List<HistoricTempoResponse>>
+    ): Call<DatesResponse>
 }
