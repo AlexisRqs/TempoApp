@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#333333"
+    android:background="@drawable/tempoapp3bg"
     tools:context=".ui.Home.HomeFragment">
 
     <TextView
@@ -98,7 +98,7 @@
         <TextView
             android:id="@+id/textViewTempoTomorrow"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:fontFamily="@font/raleway"
             android:lineSpacingExtra="8sp"
             android:text="Tempo du lendemain : TEMPO BLEU"
@@ -110,6 +110,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="360dp"
         android:layout_height="75dp"
         android:layout_marginStart="19dp"
@@ -128,7 +129,8 @@
             android:layout_height="wrap_content"
             android:text="Jours restants :"
             android:textAlignment="center"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textViewRemainingTempo"
@@ -140,16 +142,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewTempoTomorrow" />
 
-        <TextView
-            android:id="@+id/textViewHistoricTempo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Historic Tempo"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewRemainingTempo" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.example.tempoapp.ApiClient
 import com.example.tempoapp.IEdfApi
 import com.example.tempoapp.model.ColorTempoResponse
-import com.example.tempoapp.model.DatesResponse
-import com.example.tempoapp.model.HistoricTempoResponse
 import com.example.tempoapp.model.RemainingTempoResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,7 +22,6 @@ class HomeViewModel : ViewModel() {
 
     val tempoColor = MutableLiveData<ColorTempoResponse?>()
     val remainingTempo = MutableLiveData<RemainingTempoResponse?>()
-    val historicTempo = MutableLiveData<List<HistoricTempoResponse>?>()
 
     val error = MutableLiveData<String?>()
     val isLoading = MutableLiveData<Boolean>()
@@ -67,22 +64,4 @@ class HomeViewModel : ViewModel() {
         })
     }
 
-    fun fetchHistoricTempo(dateBegin: String, dateEnd: String) {
-        isLoading.value = true
-        edfApi.getHistoricTempo(dateBegin, dateEnd).enqueue(object : Callback<DatesResponse> {
-            override fun onResponse(call: Call<DatesResponse>, response: Response<DatesResponse>) {
-                if (response.isSuccessful) {
-                    historicTempo.value = response.body()?.dates
-                } else {
-                    error.value = "Error fetching historic tempo"
-                }
-                isLoading.value = false
-            }
-
-            override fun onFailure(call: Call<DatesResponse>, t: Throwable) {
-                error.value = "Error fetching historic tempo: ${t.localizedMessage}"
-                isLoading.value = false
-            }
-        })
-    }
 }
