@@ -1,5 +1,6 @@
 package com.example.tempoapp.ui.Home
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -85,6 +86,18 @@ class HomeFragment : Fragment() {
         val remainingTempoText = "${remainingTempoResponse.PARAMNBJBLEU} jours bleu(s), ${remainingTempoResponse.PARAMNBJBLANC} jours blanc(s), ${remainingTempoResponse.PARAMNBJROUGE} jours rouge(s)"
         binding.textViewRemainingTempo.text = remainingTempoText
     }
+
+    private fun updateCircleColor(tempo: String) {
+        val circleColor = when (tempo) {
+            "TEMPO_BLEU" -> Color.BLUE
+            "TEMPO_BLANC" -> Color.WHITE
+            "TEMPO_ROUGE" -> Color.RED
+            else -> Color.YELLOW
+        }
+        binding.circleTodayTempo.setBackgroundColor(circleColor)
+        binding.circleTomorrowTempo.setBackgroundColor(circleColor)
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
