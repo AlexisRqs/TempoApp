@@ -80,6 +80,8 @@ class HomeFragment : Fragment() {
     private fun updateColorTempoUI(colorTempoResponse: ColorTempoResponse) {
         binding.textViewTempoToday.text = "Tempo du jour : ${colorTempoResponse.todayColor}"
         binding.textViewTempoTomorrow.text = "Tempo du lendemain : ${colorTempoResponse.tomorrowColor}"
+
+        colorTempoResponse.todayColor?.let { updateCircleColor(it) }
     }
 
     private fun updateRemainingTempoUI(remainingTempoResponse: RemainingTempoResponse) {
