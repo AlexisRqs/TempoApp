@@ -16,7 +16,7 @@ class HomeViewModel : ViewModel() {
     private val edfApi = ApiClient.instance.create(IEdfApi::class.java)
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "Passez une bonne journée ! :)"
     }
     val text: LiveData<String> = _text
 
