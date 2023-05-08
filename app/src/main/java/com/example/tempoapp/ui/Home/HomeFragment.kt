@@ -84,18 +84,18 @@ class HomeFragment : Fragment() {
 
     private fun fetchHistoricTempo() {
         // Define the date range you want to fetch the historic data for
-        val dateBegin = "2022-01-01"
-        val dateEnd = "2022-12-31"
+        val dateBegin = "2023-01-01"
+        val dateEnd = "2023-12-31"
         homeViewModel.fetchHistoricTempo(dateBegin, dateEnd)
     }
 
     private fun updateColorTempoUI(colorTempoResponse: ColorTempoResponse) {
         binding.textViewTempoToday.text = "Tempo du jour : ${colorTempoResponse.todayColor}"
-        binding.textViewTempoTomorrow.text = "Tempo de demain : ${colorTempoResponse.tomorrowColor}"
+        binding.textViewTempoTomorrow.text = "Tempo du lendemain : ${colorTempoResponse.tomorrowColor}"
     }
 
     private fun updateRemainingTempoUI(remainingTempoResponse: RemainingTempoResponse) {
-        val remainingTempoText = "Tempo restants : Bleu : ${remainingTempoResponse.PARAMNBJBLEU} jours, Blanc : ${remainingTempoResponse.PARAMNBJBLANC} jours, Rouge : ${remainingTempoResponse.PARAMNBJROUGE} jours"
+        val remainingTempoText = "${remainingTempoResponse.PARAMNBJBLEU} jours bleu(s), ${remainingTempoResponse.PARAMNBJBLANC} jours blanc(s), ${remainingTempoResponse.PARAMNBJROUGE} jours rouge(s)"
         binding.textViewRemainingTempo.text = remainingTempoText
     }
 

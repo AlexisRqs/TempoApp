@@ -31,12 +31,14 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/text_home"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.29"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064">
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="match_parent"
+            android:layout_width="251dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway"
             android:text="Bonjour !"
@@ -70,32 +72,37 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="362dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="15dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginBottom="100dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/text_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_home">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.459">
 
         <TextView
             android:id="@+id/textViewTempoToday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="185dp"
+            android:layout_height="50dp"
             android:fontFamily="@font/raleway"
-            android:text="Tempo du jour :"
+            android:lineSpacingExtra="8sp"
+            android:text="Tempo du jour : TEMPO BLEU"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewTempoTomorrow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:fontFamily="@font/raleway"
-            android:text="Tempo du lendemain :"
+            android:lineSpacingExtra="8sp"
+            android:text="Tempo du lendemain : TEMPO BLEU"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -105,29 +112,40 @@
     <LinearLayout
         android:layout_width="360dp"
         android:layout_height="75dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="21dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.446">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jours restants :"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/textViewRemainingTempo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Remaining Tempo"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewTempoTomorrow" />
 
         <TextView
             android:id="@+id/textViewHistoricTempo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Historic Tempo"
+            android:textAlignment="center"
             android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewRemainingTempo" />
